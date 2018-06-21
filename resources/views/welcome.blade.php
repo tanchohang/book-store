@@ -5,7 +5,7 @@
         @if(Auth::check())
         <div class="row">
             <div class="col-md-12">
-               <span class="float-right badge-primary text-white font-weight-bold">Welcome,{{Auth::user()->name}}</span>
+               <span class="badge badge-primary text-white font-weight-bold float-right mr-4">Welcome, {{Auth::user()->name}}</span>
             </div>
         </div>
         @endif
