@@ -72,8 +72,16 @@ Route::prefix('cart')->group(function (){
 Route::prefix('admin')->group(function (){
 
     Route::get('/',[
-        'uses'=>'Admin\BookController@getDashboard',
+        'uses'=>'Admin\AdminController@getDashboard',
         'as'=>'dashboard'
+    ]);
+    Route::get('/login',[
+        'uses'=>'Admin\AdminLoginController@showLoginForm',
+        'as'=>'admin.login'
+    ]);
+    Route::post('/login',[
+        'uses'=>'Admin\AdminLoginController@login',
+        'as'=>'admin.login'
     ]);
 
     Route::resource('books','Admin\BookController');

@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('content')
-<div class="container">
-<div class="row card justify-content-center">
+@section('adminContent')
+<div class="justify-content-center">
+    <div class="card">
     <div class="card-header">
         <h3 class="card-title">Add Book</h3>
     </div>
@@ -35,6 +35,6 @@
         <input type="submit" class="btn btn-primary" value="Add a Book">
     </form>
     </div>
-</div>
+    </div>
 </div>
 @stop

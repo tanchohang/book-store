@@ -10,15 +10,8 @@ class BookController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:admin');
     }
-
-    public function getDashboard(){
-        return view('admin.dashboard');
-    }
-
-
-
 
     /**
      * Display a listing of the resource.

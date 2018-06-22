@@ -21,7 +21,7 @@
                         <br>
                         <a href="{{url('login/facebook')}}" class="btn btn-primary btn-lg form-control d-block"><i class="fa fa-facebook-f"></i> Login With Facebook</a><br>
                         <a href="" class="btn btn-danger btn-lg form-control d-block"><i class="fa fa-google-plus"></i> Login With Google</a><br>
-                        <a href="" class="btn btn-info btn-lg form-control d-block"><i class="fa fa-twitter"></i>Login With Twitter</a>
+                        <a href="{{url('login/twitter')}}" class="btn btn-info btn-lg form-control d-block"><i class="fa fa-twitter"></i>Login With Twitter</a>
 
                     </div>
 

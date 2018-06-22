@@ -58,15 +58,17 @@ class LoginController extends Controller
 
     public function findOrCreateUser($user, $provider)
     {
-        $authUser = User::where('provider_id', $user->id)->first();
+//        dd($user->avatar);
+        $authUser = User::where('provider_user_id', $user->id)->first();
         if ($authUser) {
+            dd($authUser."auth");
             return $authUser;
         }
         return User::create([
             'name'     => $user->name,
             'email'    => $user->email,
             'provider' => $provider,
-            'provider_id' => $user->id,
+            'provider_user_id' => $user->id,
             'avatar'=>$user->avatar
         ]);
     }
