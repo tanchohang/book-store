@@ -74,7 +74,7 @@ Route::prefix('cart')->group(function (){
 
 
 ////////ADMIN//////
-Route::prefix('admin')->group(function (){
+Route::group(['prefix'=>'admin'],function (){
 
     Route::get('/',[
         'uses'=>'Admin\AdminController@getDashboard',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -9,6 +10,10 @@ use Auth;
 
 class AdminLoginController extends Controller
 {
+    use AuthenticatesUsers;
+
+    protected $redirectTo = '/dashboard';
+
 
     public function __construct(){
         return $this->middleware('guest:admin');
@@ -34,6 +39,12 @@ class AdminLoginController extends Controller
         }
 
         return redirect()->back()->withInput($request->only('email','remember'));
+    }
+
+
+    protected function guard()
+    {
+        return Auth::guard('admin');
     }
 
 }

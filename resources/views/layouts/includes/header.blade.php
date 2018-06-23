@@ -30,20 +30,26 @@
                             <a class="dropdown-item" href="{{route('login')}}" >Sign In</a>
                             <a class="dropdown-item" href="{{route('register')}}" >Sign Up</a>
                         @endif
-                            @if(Auth::check())
 
-                                <a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a>
-                                <a class="dropdown-item" href="{{route('home')}}">Profile</a>
+                                @if(Auth::guard('admin')->check())
+                                    <a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a>
 
+                                @elseif(Auth::guard('web')->check())
+                                    <a class="dropdown-item" href="{{route('home')}}">Profile</a>
+                                @endif
+
+
+
+                                @if(Auth::check())
 
                                 <div class="dropdown-divider"></div>
 
-                                    <a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault();
+                                <a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">Logout</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                     </form>
-                            @endif
+                                @endif
                     </div>
                 </li>
 
