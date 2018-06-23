@@ -31,4 +31,12 @@ class FrontendController extends Controller
     public function getAbout(){
         return view('frontend.about');
     }
+    public function search(Request $request){
+        $books = Book::search($request->input('name'))->paginate(15);
+
+        return view('frontend.search')
+            ->with('books',$books);
+
+
+    }
 }

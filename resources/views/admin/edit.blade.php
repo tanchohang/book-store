@@ -29,7 +29,7 @@
                     <input type="text" class="form-control" name="price" value="{{$book->price}}">
 
                     <label for="description"></label>
-                    <textarea class="form-control" name="description" cols="7">{{$book->description}}</textarea>
+                    <textarea class="form-control editor" name="description" rows="10">{{$book->description}}</textarea>
 
                     <br>
 

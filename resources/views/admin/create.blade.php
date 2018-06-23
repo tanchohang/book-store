@@ -28,7 +28,7 @@
         <input type="text" class="form-control" name="price" placeholder="Enter the Price of the book">
 
         <label for="description"></label>
-        <textarea class="form-control" name="description" cols="7" placeholder="Enter the description of the book"></textarea>
+        <textarea class="form-control editor" name="description" rows="10" placeholder="Enter the description of the book"></textarea>
 
         <br>
 

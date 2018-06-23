@@ -13,7 +13,7 @@
                         <h6><span class="text-dark"><strong class="mr-2">Rs.{{$book->price}}</strong></span><span class="badge badge-danger">  20% Discount Offer</span></h6>
                         <a href="{{route('books.edit',['id'=>$book->id])}}" class="btn btn-sm btn-info">Edit</a>
                         <a href="{{route('books.show',['id'=>$book->id])}}" class="btn btn-sm btn-info">Detail</a>
-                        <form action="{{route('books.destroy',['id'=>$book->id])}}" method="GET">
+                        <form action="{{route('books.destroy',['id'=>$book->id])}}" method="POST">
                             @method('DELETE')
                             @csrf
                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>

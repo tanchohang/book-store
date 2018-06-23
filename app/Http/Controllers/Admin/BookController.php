@@ -168,9 +168,11 @@ class BookController extends Controller
     {
         $book=Book::find($id);
 
-        Toastr::success('Book Item deleted successfully');
 
         $book->delete();
+        Toastr::success('Book Item deleted successfully');
+
+        return redirect()->route('books.index');
 
     }
 }

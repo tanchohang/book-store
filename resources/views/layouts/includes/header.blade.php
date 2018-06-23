@@ -26,11 +26,11 @@
                         <i class="fas fa-user-circle"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @if(!Auth::check())
+                            @if(!Auth::guard('admin')->check() && Auth::guard('web')->check())
+
                             <a class="dropdown-item" href="{{route('login')}}" >Sign In</a>
                             <a class="dropdown-item" href="{{route('register')}}" >Sign Up</a>
-                        @endif
-
+                            @endif
                                 @if(Auth::guard('admin')->check())
                                     <a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a>
 
@@ -54,8 +54,8 @@
                 </li>
 
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <form  action="{{route('search')}}" method="get" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
             </form>
 
