@@ -6,7 +6,7 @@ use Session;
 use Auth;
 use Cart;
 use App\Order;
-//use App\Cart;
+use Toastr;
 use App\Book;
 use Illuminate\Http\Request;
 
@@ -124,33 +124,80 @@ class CartController extends Controller
     }*/
 
 
-
-    public function getCart(){
-//        dd(Cart::content());
+    public function getCart()
+    {
+//        dd(Session::get('totalPrice'));
         return view('frontend.cart');
     }
-    public function addToCart($id){
-        $book=Book::find($id);
-        Cart::add($id,$book->title,1,$book->price);
-        return redirect()->route('cart');
+
+    public function addToCart($id)
+    {
+        $book = Book::find($id);
+        Cart::add($id, $book->title, 1, $book->price,['img'=>$book->imgUrl]);
+
+        Toastr::success($book->title." added to cart", $title = "Added To Cart");
+        return redirect()->back();
     }
 
-    public function removeItem($id){
+    public function removeItem($id)
+    {
         Cart::remove($id);
+
+        Toastr::success("Removed from cart");
+
         return redirect()->route('cart');
     }
 
-    public function updateCart(Request $request,$id){
-        $qty=$request->input('quantity');
-        $cart=Cart::update($id,$qty);
+    public function updateCart(Request $request, $id)
+    {
+        $validator=$request->validate([
+            'quantity'=>'required|numeric|between:1,5',
+        ]);
 
-        return response()->json($cart);
+        Cart::update($id, $request->input('quantity'));
+
+        return response()->json(['success'=>'true']);
 
     }
 
-    public function destroyCart(){
+    public function destroyCart()
+    {
 //        Cart::destroy();
         Session::forget('cart');
         return redirect()->back();
+    }
+
+    public function getCheckout()
+    {
+            return view('frontend.checkout');
+
+
+    }
+    public function postCheckout(Request $request)
+    {
+
+        $request->validate([
+            'phone' => 'required',
+            'address' => 'required'
+        ]);
+
+        $user = Auth::user();
+
+
+        $order = new Order();
+        $cart = Session::get('cart');
+        $order->cart = serialize($cart);
+        $order->address = $request->input('address');
+        $order->phone = $request->input('phone');
+
+        $user->orders()->save($order);
+
+        Toastr::success("Ordere has been submitted");
+
+
+        $this->destroyCart();
+        Session::forget('cart');
+
+        return redirect()->route('home');
     }
 }

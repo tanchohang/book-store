@@ -7,7 +7,11 @@
                 <div class="card">
                     <div class="card-header bg-dark text-primary">
                         {{--<img src="" alt="prifile pic here" class="card-img">--}}
-                        <h4 class="card-title ">Admin Dashboard</h4>
+                        <div class="row">
+                            <h4 class="card-title col-md-10 m-auto">Admin Dashboard</h4>
+
+                            <a href="{{url()->previous()}}" class="btn btn-outline-light ">Back</a>
+                        </div>
                     </div>
                     <div class="card-body bg-light">
                         <ul class="list-group">
@@ -21,7 +25,7 @@
                     </div>
                 </div>
             </div>
-<div class="col-md-6">
+<div class="col-md-8">
     @yield('adminContent')
 
 </div>

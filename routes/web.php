@@ -51,13 +51,14 @@ Route::prefix('cart')->group(function (){
         'as'=>'removeFromCart'
     ]);
 
-    Route::get('check-out',[
-        'uses'=>'CartController@checkout',
-        'as'=>'checkout'
-    ]);
+
     Route::get('destroy-cart',[
         'uses'=>'CartController@destroyCart',
         'as'=>'destroyCart'
+    ]);
+    Route::get('check-out',[
+        'uses'=>'CartController@getCheckout',
+        'as'=>'checkout'
     ]);
     Route::post('order',[
         'uses'=>'CartController@postCheckout',

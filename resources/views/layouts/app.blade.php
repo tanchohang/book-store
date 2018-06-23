@@ -9,11 +9,12 @@
     <title>Book Shop</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+
     <script src="{{asset('js/app.js')}}"></script>
     @if(config('app.env')=="production")
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     @endif
-    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 </head>
 <body>
 
@@ -25,25 +26,36 @@
 
     {{--@include('layouts.includes.footer')--}}
 
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    {!! Toastr::render() !!}
+
+
     <script>
-        $(document).ready(function () {
-            $(".quantity").on('change keyup',function () {
-                const id=$("[data-id]").attr('data-id');
-                console.log(id);
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    method:"PUT",
-                    url:`/cart/update-cart/${id}`,
-                    data:{quantity:this.value}
+        (function(){
+            const classname = document.querySelectorAll('.quantity')
+            Array.from(classname).forEach(function(element) {
+                element.addEventListener('change', function() {
+                    const id = element.getAttribute('data-id')
+                    axios.put(`/cart/update-cart/${id}`, {
+                        quantity: this.value
+                    })
+                        .then(function (response) {
+                            // console.log(response);
+                            window.location.href = '{{ route('cart') }}'
+                        })
+                        .catch(function (error) {
+                            // console.log(error);
+                            window.location.href = '{{ route('cart') }}'
+                        });
                 })
-                    .then(function (response) {
-                        window.location.href="{{route('cart')}}"
-                    });
             })
-        });
+        })();
     </script>
+
+
 
 </body>
 </html>

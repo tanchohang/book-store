@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Cart;
 use Auth;
+use Session;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,6 +28,8 @@ class HomeController extends Controller
     {
         $user=Auth::user();
         $orders=$user->orders()->paginate(2);
+
+
         $orders->transform(function ($order,$key){
             $order->cart=unserialize($order->cart);
             return $order;
@@ -33,7 +37,7 @@ class HomeController extends Controller
 
         return view('home',[
             'user'=>$user,
-            'orders'=>$orders
+            'orders'=>$orders,
         ]);
     }
 }

@@ -48,20 +48,39 @@
 
                                 @foreach($orders as $order)
                                    <div class="card">
-                                       <span class="card-header  badge badge-pill">Order {{$order->id}}</span>
+                                       <span class="card-header  badge badge-pill">Order Id  {{$order->id}}//{{$order->created_at}}</span>
                                        <div class="card-body">
                                            <ul class="list-group">
-                                               @foreach($order->cart->items as $item)
-                                                   <li class="list-group-item">
-                                                       <span class="bagde badge-light">{{$item['item']['title']}}</span>
-                                                       <span class="badge badge-warning">{{$item['qty']}} Units</span>
-                                                       <span class="badge badge-dark float-right">Rs.{{$item['price']}}</span>
-                                                   </li>
-                                               @endforeach
+
+                                                   @foreach($order->cart as $items)
+                                                       @foreach($items as $item)
+                                                           <li class="list-group-item">
+                                                               <span class="bagde badge-light">{{$item->name}}</span>
+                                                               <span class="badge badge-warning">{{$item->qty}} Units</span>
+                                                               <span class="badge badge-dark float-right">Rs.{{$item->price}}</span>
+                                                           </li>
+                                                        @endforeach
+                                                   @endforeach
+
                                            </ul>
                                        </div>
                                        <div class="card-footer">
-                                           <strong>Total:Rs.{{$order->cart->totalPrice}}</strong>
+                                           <div class="row">
+                                               <div class="col-md-6">
+                                                   <strong>Phone: <span class="badge badge-info">{{$order->phone}}</span></strong><br>
+                                                   <strong>Address: <span class="badge badge-info">{{$order->address}}</span></strong><br>
+                                               </div>
+                                               {{--<div class="col-md-6">--}}
+                                                   {{--<strong>Total Price: Rs. <span class="badge badge-info">{{$totalPrice}}</span></strong><br>--}}
+                                                   {{--<strong>Total Quantity: <span class="badge badge-info">{{$totalQty}}</span></strong>--}}
+                                               {{--</div>--}}
+
+
+                                           </div><hr>
+
+
+
+
                                        </div>
                                    </div>
 

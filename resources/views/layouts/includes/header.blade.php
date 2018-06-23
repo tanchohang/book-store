@@ -17,7 +17,9 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('cart')}}"><i class="fas fa-shopping-cart"></i>Shopping Cart</a>
+                    <a class="nav-link" href="{{route('cart')}}"><i class="fas fa-shopping-cart"></i>Shopping Cart
+                    <span class="badge badge-warning text-white">{{Session::has('cart')?Cart::count():""}}</span>
+                    </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

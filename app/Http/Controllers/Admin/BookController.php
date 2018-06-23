@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Toastr;
 
 class BookController extends Controller
 {
@@ -72,6 +73,8 @@ class BookController extends Controller
         $book->imgUrl=$path;
 
         $book->save();
+
+        Toastr::success('Book Item created successfully');
 
         return redirect()->route('admin.books');
 
@@ -148,6 +151,8 @@ class BookController extends Controller
         $book->description=$request->description;
 
         $book->save();
+        Toastr::success('Book Item saved successfully');
+
 
         return redirect('admin/books');
 
@@ -163,7 +168,8 @@ class BookController extends Controller
     {
         $book=Book::find($id);
 
-        dd($book->imgUrl);
+        Toastr::success('Book Item deleted successfully');
+
         $book->delete();
 
     }
