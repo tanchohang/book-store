@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Book Shop</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -24,7 +25,25 @@
 
     {{--@include('layouts.includes.footer')--}}
 
-    {!! Toastr::message() !!}
+    <script>
+        $(document).ready(function () {
+            $(".quantity").on('change keyup',function () {
+                const id=$("[data-id]").attr('data-id');
+                console.log(id);
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method:"PUT",
+                    url:`/cart/update-cart/${id}`,
+                    data:{quantity:this.value}
+                })
+                    .then(function (response) {
+                        window.location.href="{{route('cart')}}"
+                    });
+            })
+        });
+    </script>
 
 </body>
 </html>

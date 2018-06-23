@@ -7,7 +7,8 @@
                 <h1 class="card-title">Checkout</h1>
                 <h4>Total:Rs.{{$total}}</h4>
             </div>
-            <form action="{{route('order')}}" method="POST" class="card-body">
+            {{dd($product)}}
+            <form action="{{route('order'}}" method="POST" class="card-body">
                 @csrf
 
                 <input type="text" name="address" class="form-control" placeholder="Enter Your Address"><br>

@@ -46,22 +46,26 @@ Route::prefix('cart')->group(function (){
         'as'=>'addToCart'
     ]);
 
-    Route::get('remove-cart/{id}',[
+    Route::get('remove-from-cart/{id}',[
         'uses'=>'CartController@removeItem',
-        'as'=>'removeCart'
+        'as'=>'removeFromCart'
     ]);
 
     Route::get('check-out',[
         'uses'=>'CartController@checkout',
         'as'=>'checkout'
     ]);
-    Route::get('empty-cart',[
-        'uses'=>'CartController@emptyCart',
-        'as'=>'emptyCart'
+    Route::get('destroy-cart',[
+        'uses'=>'CartController@destroyCart',
+        'as'=>'destroyCart'
     ]);
     Route::post('order',[
         'uses'=>'CartController@postCheckout',
         'as'=>'order'
+    ]);
+    Route::put('update-cart/{id}',[
+        'uses'=>'CartController@updateCart',
+        'as'=>'updateCart'
     ]);
 
 });

@@ -35,6 +35,15 @@ class Cart
         $this->totalQty++;
         $this->totalPrice += $item->price;
     }
+
+    public function update($qty,$id,$item){
+        $storedItem = ['qty' => $qty, 'price' => $qty*$item->price, 'item' => $item];
+        $this->items[$id] = $storedItem;
+        if($this)
+        $this->totalQty+=$storedItem['qty'];
+        $this->totalPrice += $storedItem['price'];
+
+    }
     public function removeItem($id) {
         $this->totalQty -= $this->items[$id]['qty'];
         $this->totalPrice -= $this->items[$id]['price'];

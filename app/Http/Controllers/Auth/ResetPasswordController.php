@@ -27,6 +27,10 @@ class ResetPasswordController extends Controller
      */
     protected $redirectTo = '/home';
 
+    protected function guard()
+    {
+        return Auth::guard('web');
+    }
     /**
      * Create a new controller instance.
      *

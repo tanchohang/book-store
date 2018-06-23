@@ -4,18 +4,27 @@ namespace App\Http\Controllers;
 
 use Session;
 use Auth;
+use Cart;
 use App\Order;
-use App\Cart;
+//use App\Cart;
 use App\Book;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function getCart(){
+    ///////MANUAL CART SYSTEM
+
+    /*public function getCart(){
         $oldCart = Session::get('cart');
         $cart  = new Cart($oldCart);
-        return view('frontend.cart',['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+        return view('frontend.cart',[
+            'products' => $cart->items,
+            'totalPrice' => $cart->totalPrice,
+            'totalQty'=>$cart->totalQty
+
+        ]);
     }
+
 
     public function addToCart(Request $request,$id){
         $product=Book::find($id);
@@ -39,6 +48,26 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
+    public function updateCart(Request $request,$id){
+
+        $request->validate([
+            'quantity'=>'required'
+        ]);
+
+        $quantity=$request->quantity;
+        $product=Book::find($id);
+
+    foreach ($request->all() as $id=>$val){
+        dd($id);
+        }
+        $oldcart=Session::get('cart');
+        $cart=new Cart($oldcart);
+        $cart->update($quantity,$id,$product);
+        $request->session()->put('cart',$cart);
+
+        return response()->json(Session::get('cart'));
+
+    }
 
 
     public  function checkout(Request $request){
@@ -46,10 +75,18 @@ class CartController extends Controller
             return view('frontend.cart');
         }
 
+
+
+
+        $quantity=$request->input('quantity');
+
         $oldCart =Session::get('cart');
+//        $oldCart->items[$item_id]['qty']=$quantity;
+
         $cart = new Cart($oldCart);
+
         $total=$cart->totalPrice;
-//        $quantity=$request->input('quantity');
+
         return view('frontend.checkout',[
             'total'=>$total,
 //            'quantity'=>$quantity
@@ -82,5 +119,38 @@ class CartController extends Controller
 
     public function emptyCart(){
         Session::forget('cart');
+
+        return redirect()->back();
+    }*/
+
+
+
+    public function getCart(){
+//        dd(Cart::content());
+        return view('frontend.cart');
+    }
+    public function addToCart($id){
+        $book=Book::find($id);
+        Cart::add($id,$book->title,1,$book->price);
+        return redirect()->route('cart');
+    }
+
+    public function removeItem($id){
+        Cart::remove($id);
+        return redirect()->route('cart');
+    }
+
+    public function updateCart(Request $request,$id){
+        $qty=$request->input('quantity');
+        $cart=Cart::update($id,$qty);
+
+        return response()->json($cart);
+
+    }
+
+    public function destroyCart(){
+//        Cart::destroy();
+        Session::forget('cart');
+        return redirect()->back();
     }
 }
