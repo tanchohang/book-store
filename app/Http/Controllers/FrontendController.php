@@ -32,10 +32,22 @@ class FrontendController extends Controller
         return view('frontend.about');
     }
     public function search(Request $request){
-        $books = Book::search($request->input('name'))->paginate(15);
+//        $books = Book::search($request->input('search'))->paginate(15);
+        $results = Book::search($request->input('search'))->get();
 
-        return view('frontend.search')
-            ->with('books',$books);
+        if(count($results)==0){
+            $searchResult[]="No Item found";
+        }
+        else{
+            foreach ($results as $result){
+                $searchResult[]=$result->title;
+            }
+        }
+
+        return $searchResult;
+
+//        return view('frontend.search')
+//            ->with('books',$books);
 
 
     }

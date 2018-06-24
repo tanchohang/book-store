@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
+
+
+
     <script src="{{asset('js/app.js')}}"></script>
     @if(config('app.env')=="production")
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -30,6 +34,8 @@
 
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"> </script>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::render() !!}
 
@@ -42,7 +48,6 @@
             theme: 'snow'
         });
     </script>
-
 
     <script>
         (function(){
@@ -64,6 +69,16 @@
                 })
             })
         })();
+
+        $( function() {
+
+            $( "#searchItem" ).autocomplete({
+                source: 'http://localhost:8000/search'
+            });
+        } );
+    </script>
+    <script>
+
     </script>
 
 

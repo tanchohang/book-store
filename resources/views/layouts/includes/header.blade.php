@@ -55,8 +55,8 @@
 
             </ul>
             <form  action="{{route('search')}}" method="get" class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control" id="searchItem" name="search" type="search" placeholder="Search" aria-label="Search">
+
             </form>
 
 

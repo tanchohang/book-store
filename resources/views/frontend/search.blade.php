@@ -9,9 +9,12 @@
                 @foreach ($books as $book)
 
                 <li class="list-group-item">
-                    {{ $book->title }}
+                    {{ $book->title}}
+                    {{ $book->author}}<br>
+
 
                 </li>
+
                 @endforeach
 
             </ul>
