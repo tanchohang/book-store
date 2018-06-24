@@ -20,14 +20,7 @@ Route::get('detail/{id}',[
     'uses'=>'FrontendController@detailView',
     'as'=>'detail'
 ]);
-Route::get('contact',[
-    'uses'=>'FrontendController@getContact',
-    'as'=>'contact'
-]);
-Route::post('contact',[
-    'uses'=>'FrontendController@postContact',
-    'as'=>'contact'
-]);
+
 Route::get('about',[
     'uses'=>'FrontendController@getAbout',
     'as'=>'about'
@@ -70,6 +63,18 @@ Route::prefix('cart')->group(function (){
     ]);
 
 });
+
+////////contact/////
+
+Route::post('/contact',[
+    'uses'=>'ContactController@postToAdmin',
+    'as'=>'contact'
+]);
+
+Route::get('/contact',[
+    'uses'=>'ContactController@getContact',
+    'as'=>'contact'
+]);
 
 
 

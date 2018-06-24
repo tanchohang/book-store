@@ -20,13 +20,8 @@ class FrontendController extends Controller
         ]);
     }
 
-    public function getContact(){
-        return view('frontend.contact');
-    }
 
-    public function postContact(Request $request){
-        return "form posted";
-    }
+
 
     public function getAbout(){
         return view('frontend.about');

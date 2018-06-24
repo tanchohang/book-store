@@ -32,7 +32,7 @@
     {{--@include('layouts.includes.footer')--}}
 
 
-
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"> </script>
 
@@ -77,9 +77,7 @@
             });
         } );
     </script>
-    <script>
-
-    </script>
+    @yield('script')
 
 
 
