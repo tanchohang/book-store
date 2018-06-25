@@ -16,7 +16,7 @@ class ContactController extends Controller
         return view('frontend.contact');
     }
 
-    public function postToAdmin(ContactFormRequest $request,Captcha $captcha){
+    public function postToAdmin(Request $request,Captcha $captcha){
         $contact = [
             'name'=>$request->input('name'),
             'email'=>$request->input('email'),
@@ -28,10 +28,10 @@ class ContactController extends Controller
         $response = $captcha->check($request);
 
         if ($response->isVerified()) {
-            Mail::send('emails.contact',$contact,function ($message) use ($contact){
-                $message->from($contact['email']);
-                $message->to('tanchohang@gmail.com');
-                $message->subject($contact['subject']);
+            Mail::send('emails.contact',$contact,function ($message){
+//                $message->from('tanchohang@gmail.com');
+//                $message->to('tanchohang@gmail.com');
+//                $message->subject($contact['subject']);
             });
         }
 

@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password',60)->nullable();
             $table->string('provider')->nullable();
-            $table->string('provider_user_id')->unique()->nullable();
+            $table->bigInteger('provider_user_id')->unique();
             $table->rememberToken();
             $table->timestamps();
         });

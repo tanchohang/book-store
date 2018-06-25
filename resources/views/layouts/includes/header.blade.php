@@ -22,15 +22,15 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user-circle"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            @if(!Auth::guard('admin')->check() && Auth::guard('web')->check())
+                            @guest
 
                             <a class="dropdown-item" href="{{route('login')}}" >Sign In</a>
                             <a class="dropdown-item" href="{{route('register')}}" >Sign Up</a>
-                            @endif
+                            @endguest
                                 @if(Auth::guard('admin')->check())
                                     <a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a>
 
