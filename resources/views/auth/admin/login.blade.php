@@ -18,14 +18,14 @@
                             @foreach($errors->get('email') as $error)
                                 <span class="text-danger">{{$error}}</span><br>
                             @endforeach
-                            <input name="email" class="form-control" placeholder="Enter Your Email">
+                            <input name="email" class="form-control" placeholder="Enter Your Email" value="admin@admin.com">
                         </div>
                         <div class="form-group {{$errors->has('password')? "has-error":""}}">
                             <label for="password" class="{{$errors->has('password')? "text-danger":""}}"><i class="fa fa-lock prefix"></i></label><br>
                             @foreach($errors->get('password') as $error)
                                 <span class="text-danger">{{$error}}</span><br>
                             @endforeach
-                            <input type="password" name="password" class="form-control" placeholder="Enter Your Password">
+                            <input type="password" name="password" class="form-control" placeholder="Enter Your Password" value="password">
                         </div>
                         <span><input type="checkbox" name="remember_token">Remember me?</span><br>
 

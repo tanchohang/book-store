@@ -58,7 +58,9 @@
 
                 <!-- Card footer -->
                 <div class="card-footer">
-                    <span class="float-right">Don't have an account? <a href="{{route('register')}}">Sign Up</a></span>
+                    <div class="clearfix"><span class="float-right">Don't have an account? <a href="{{route('register')}}">Sign Up</a></span>
+                    </div>
+                    <div ><span class="btn-link float-right"><a href="{{route('admin.login')}}">Admin login here </a></span></div>
                 </div>
 
 
